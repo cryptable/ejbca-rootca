@@ -69,7 +69,8 @@ database_password="sa"
 BASE_DN="O=Cryptable,C=BE"
 
 pkcs11_name=NitroKey
-pkcs11_lib=/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+# pkcs11_lib=/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+pkcs11_lib=/usr/lib/arm-linux-gnueabihf/opensc-pkcs11.so
 pkcs11_slot=0
 test_key_size=1024
 default_key_size=2048
@@ -242,7 +243,7 @@ wildfly_setup_https() {
   wildfly_exec "/subsystem=undertow/server=default-server/http-listener=http:add(socket-binding=http)"
   wildfly_exec ":reload"
   
-  wildfly_check
+  wildfly_check 240
   
   wildfly_exec "/core-service=management/security-realm=SSLRealm:add()"
   wildfly_exec "/core-service=management/security-realm=SSLRealm/server-identity=ssl:add(keystore-relative-to=\"jboss.server.config.dir\", keystore-path=\"keystore/keystore.jks\", keystore-password=\"${keystore_password}\", alias=\"${web_hostname}\")"
@@ -258,7 +259,7 @@ wildfly_setup_https() {
   wildfly_exec "/subsystem=undertow/server=default-server/https-listener=httpspriv:add(socket-binding=httpspriv, security-realm=\"SSLRealm\", verify-client=REQUIRED)"
   wildfly_exec "/subsystem=undertow/server=default-server/https-listener=httpspub:add(socket-binding=httpspub, security-realm=\"SSLRealm\")"
   wildfly_exec ":reload"
-  wildfly_check 30
+  wildfly_check 240
 
   wildfly_exec "/system-property=org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH:add(value=true)"
   wildfly_exec "/system-property=org.apache.catalina.connector.CoyoteAdapter.ALLOW_BACKSLASH:add(value=true)"
@@ -267,7 +268,7 @@ wildfly_setup_https() {
   wildfly_exec "/subsystem=webservices:write-attribute(name=wsdl-host, value=jbossws.undefined.host)"
   wildfly_exec "/subsystem=webservices:write-attribute(name=modify-wsdl-address, value=true)"
   wildfly_exec ":reload"
-  wildfly_check 30
+  wildfly_check 240
 }
 
 
@@ -275,7 +276,7 @@ wildfly_setup_logging() {
   wildfly_exec "/subsystem=logging/logger=org.ejbca:write-attribute(name=level, value=DEBUG)"
   wildfly_exec "/subsystem=logging/logger=org.cesecore:write-attribute(name=level, value=DEBUG)"
   wildfly_exec ":reload"
-  wildfly_check 30
+  wildfly_check 240
 }
 # END WildFly functions
 
