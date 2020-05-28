@@ -1,0 +1,142 @@
+2020-03-15 19:08:24,655 INFO  [org.cesecore.config.ConfigurationHolder] Allow external re-configuration: false
+2020-03-15 19:08:24,659 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/cesecore.properties
+2020-03-15 19:08:24,667 DEBUG [org.cesecore.config.ConfigurationHolder] Added url to configuration source: jar:file:/home/ejbca/ejbca_ce_6_15_3_0/dist/clientToolBox/clientToolBox.jar!/conf/cesecore.properties
+2020-03-15 19:08:24,667 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/extendedkeyusage.properties
+2020-03-15 19:08:24,668 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/cache.properties
+2020-03-15 19:08:24,669 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/database.properties
+2020-03-15 19:08:24,675 DEBUG [org.cesecore.config.ConfigurationHolder] Added url to configuration source: jar:file:/home/ejbca/ejbca_ce_6_15_3_0/dist/clientToolBox/clientToolBox.jar!/conf/database.properties
+2020-03-15 19:08:24,675 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/databaseprotection.properties
+2020-03-15 19:08:24,675 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/backup.properties
+2020-03-15 19:08:24,676 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/va.properties
+2020-03-15 19:08:24,679 DEBUG [org.cesecore.config.ConfigurationHolder] Add resource to configuration: /conf/ocsp.properties
+2020-03-15 19:08:25,164 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] slot spec: Slot type: 'Slot Number'. Slot value: '0'.
+2020-03-15 19:08:25,210 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] >getSunP11ProviderInputStream: -1, /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so, Slot Number, null, null
+2020-03-15 19:08:25,222 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] name = opensc-pkcs11.so-slot-1
+library = /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+slot = -1
+attributes(*, CKO_PUBLIC_KEY, *) = {
+  CKA_TOKEN = false
+  CKA_ENCRYPT = true
+  CKA_VERIFY = true
+  CKA_WRAP = true
+}
+attributes(*, CKO_PRIVATE_KEY, *) = {
+  CKA_DERIVE = false
+  CKA_TOKEN = true
+  CKA_PRIVATE = true
+  CKA_SENSITIVE = true
+  CKA_EXTRACTABLE = false
+  CKA_DECRYPT = true
+  CKA_SIGN = true
+  CKA_UNWRAP = true
+}
+attributes(*, CKO_SECRET_KEY, *) = {
+  CKA_SENSITIVE = true
+  CKA_EXTRACTABLE = false
+  CKA_ENCRYPT = true
+  CKA_DECRYPT = true
+  CKA_SIGN = true
+  CKA_VERIFY = true
+  CKA_WRAP = true
+  CKA_UNWRAP = true
+}
+
+2020-03-15 19:08:25,224 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Using SUN PKCS11 provider: sun.security.pkcs11.SunPKCS11
+2020-03-15 19:08:25,224 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] store configuration /tmp/ejbca_2792488987496970955.tmp
+2020-03-15 19:08:25,236 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Provider not configured/tmp/ejbca_2792488987496970955.tmp
+2020-03-15 19:08:27,979 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Provider configured
+2020-03-15 19:08:28,046 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] {PKCS11_NATIVE_MODULE=/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so, SLOT_ID=0}
+2020-03-15 19:08:28,047 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] >getSunP11ProviderInputStream: 0, /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so, Slot Number, null, priv-signing
+2020-03-15 19:08:28,059 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Setting CKA_LABEL to '  CKA_LABEL = 0h707269762d7369676e696e67'
+2020-03-15 19:08:28,060 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] name = opensc-pkcs11.so-slot0
+library = /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+slot = 0
+attributes(*, CKO_PUBLIC_KEY, *) = {
+  CKA_TOKEN = false
+  CKA_ENCRYPT = true
+  CKA_VERIFY = true
+  CKA_WRAP = true
+}
+attributes(*, CKO_PRIVATE_KEY, *) = {
+  CKA_DERIVE = false
+  CKA_TOKEN = true
+  CKA_PRIVATE = true
+  CKA_SENSITIVE = true
+  CKA_EXTRACTABLE = false
+  CKA_DECRYPT = true
+  CKA_SIGN = true
+  CKA_LABEL = 0h707269762d7369676e696e67
+  CKA_UNWRAP = true
+}
+attributes(*, CKO_SECRET_KEY, *) = {
+  CKA_SENSITIVE = true
+  CKA_EXTRACTABLE = false
+  CKA_ENCRYPT = true
+  CKA_DECRYPT = true
+  CKA_SIGN = true
+  CKA_VERIFY = true
+  CKA_WRAP = true
+  CKA_UNWRAP = true
+}
+
+2020-03-15 19:08:28,060 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Using SUN PKCS11 provider: sun.security.pkcs11.SunPKCS11
+2020-03-15 19:08:28,060 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] store configuration /tmp/ejbca_18296207007281884154.tmp
+2020-03-15 19:08:28,060 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Provider not configured/tmp/ejbca_18296207007281884154.tmp
+2020-03-15 19:08:28,181 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Provider configured
+2020-03-15 19:08:28,183 DEBUG [org.ejbca.util.keystore.KeyStoreToolsFactory] Adding provider with name: SunPKCS11-opensc-pkcs11.so-slot0
+2020-03-15 19:08:28,524 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] cachingEnabled: true
+2020-03-15 19:08:28,539 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] KeyStore has alias: default
+2020-03-15 19:08:28,539 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] KeyStore has alias: test
+2020-03-15 19:08:28,539 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] KeyStore has alias: empty
+2020-03-15 19:08:28,549 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] slot spec: Slot type: 'Slot Number'. Slot value: '0'.
+2020-03-15 19:08:28,549 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] {PKCS11_NATIVE_MODULE=/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so, SLOT_ID=0}
+2020-03-15 19:08:28,549 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] >getSunP11ProviderInputStream: 0, /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so, Slot Number, null, null
+2020-03-15 19:08:28,557 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] name = opensc-pkcs11.so-slot0
+library = /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+slot = 0
+attributes(*, CKO_PUBLIC_KEY, *) = {
+  CKA_TOKEN = false
+  CKA_ENCRYPT = true
+  CKA_VERIFY = true
+  CKA_WRAP = true
+}
+attributes(*, CKO_PRIVATE_KEY, *) = {
+  CKA_DERIVE = false
+  CKA_TOKEN = true
+  CKA_PRIVATE = true
+  CKA_SENSITIVE = true
+  CKA_EXTRACTABLE = false
+  CKA_DECRYPT = true
+  CKA_SIGN = true
+  CKA_UNWRAP = true
+}
+attributes(*, CKO_SECRET_KEY, *) = {
+  CKA_SENSITIVE = true
+  CKA_EXTRACTABLE = false
+  CKA_ENCRYPT = true
+  CKA_DECRYPT = true
+  CKA_SIGN = true
+  CKA_VERIFY = true
+  CKA_WRAP = true
+  CKA_UNWRAP = true
+}
+
+2020-03-15 19:08:28,557 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Using SUN PKCS11 provider: sun.security.pkcs11.SunPKCS11
+2020-03-15 19:08:28,557 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] store configuration /tmp/ejbca_9797219025458357166.tmp
+2020-03-15 19:08:28,558 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Provider not configured/tmp/ejbca_9797219025458357166.tmp
+2020-03-15 19:08:28,658 DEBUG [org.cesecore.keys.token.p11.Pkcs11SlotLabel] Provider configured
+2020-03-15 19:08:28,659 DEBUG [org.ejbca.util.keystore.KeyStoreToolsFactory] Adding provider with name: SunPKCS11-opensc-pkcs11.so-slot0
+2020-03-15 19:08:28,659 DEBUG [org.ejbca.util.keystore.KeyStoreToolsFactory] Provider already exists, not adding.
+2020-03-15 19:08:28,729 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] cachingEnabled: true
+2020-03-15 19:08:28,730 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] KeyStore has alias: default
+2020-03-15 19:08:28,731 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] KeyStore has alias: test
+2020-03-15 19:08:28,731 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] KeyStore has alias: empty
+2020-03-15 19:08:28,735 DEBUG [org.cesecore.keys.util.KeyStoreTools] generating...
+2020-03-15 19:08:49,525 DEBUG [org.cesecore.keys.util.KeyStoreTools] Keystore signing algorithm SHA1WithRSA
+2020-03-15 19:08:50,419 INFO  [org.cesecore.keys.util.SignWithWorkingAlgorithm] Signature algorithm 'SHA1WithRSA' working for provider 'SunPKCS11-opensc-pkcs11.so-slot0 version 11'.
+2020-03-15 19:08:50,445 DEBUG [org.cesecore.certificates.util.DnComponents] Using default values for DN components
+2020-03-15 19:08:50,469 DEBUG [org.cesecore.certificates.util.DnComponents] Read profile maps with 48 lines.
+2020-03-15 19:08:50,469 DEBUG [org.cesecore.certificates.util.DnComponents] Properties file /profilemappings_enterprise.properties was not found.
+2020-03-15 19:08:50,521 DEBUG [org.cesecore.keys.util.KeyStoreTools] Creating certificate with entry signing.
+2020-03-15 19:08:50,527 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] Removed entry from cache for alias: signing
+2020-03-15 19:08:51,780 DEBUG [org.cesecore.keys.token.CachingKeyStoreWrapper] Updated key entry in cache for alias: signing

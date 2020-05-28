@@ -1,0 +1,176 @@
+Install EJBCA
+=============
+
+Utimaco PKCS11 driver
+---------------------
+
+### Install pkcs11 driver
+
+- Download simulator, because it contains the pkcs11 drivers for netHSM
+- Extract into a <extract directory>
+- change directory into the <extract directory> and run following commands
+
+```
+sudo bash
+cd Software/Linux/x86-64
+mkdir -p /opt/utimaco/pkcs11
+mkdir -p /opt/utimaco/bin
+mkdir -p /opt/utimaco/key
+cp Administration/csadm /opt/utimaco/bin/csadm
+chmod +x-w+r /opt/utimaco/bin/csadm
+cp Administration/key/ADMIN.key /opt/utimaco/key
+chmod -x-w+r /opt/utimaco/key/ADMIN.key
+cp -R Crypto_APIs/PKCS11_R2/* /opt/utimaco/pkcs11/
+cp Crypto_APIs/PKCS11_R2/sample/cs_pkcs11_R2.cfg /etc
+chmod -R -w+r /opt/utimaco/pkcs11
+chmod +x /opt/utimaco/pkcs11/bin/p11tool2
+chmod +x /opt/utimaco/pkcs11/lib/libcs_pkcs11_R2.so
+ln -s /opt/utimaco/pkcs11/bin/p11tool2 /usr/local/bin/p11tool2
+ln -s /opt/utimaco/pkcs11/lib/libcs_pkcs11_R2.so /usr/local/lib/libcs_pkcs11_R2.so
+ln -s /opt/utimaco/pkcs11/lib/libcs_pkcs11_R2_m.a /usr/local/lib/libcs_pkcs11_R2_m.a
+ln -s /opt/utimaco/pkcs11/include/cryptoki.h /usr/local/include/cryptoki.h
+ln -s /opt/utimaco/pkcs11/include/pkcs11.h /usr/local/include/pkcs11.h
+ln -s /opt/utimaco/pkcs11/include/pkcs11f.h /usr/local/include/pkcs11f.h
+ln -s /opt/utimaco/pkcs11/include/pkcs11t.h /usr/local/include/pkcs11t.h
+ln -s /opt/utimaco/pkcs11/include/pkcs11t_cs.h /usr/local/include/pkcs11t_cs.h
+ln -s /opt/utimaco/bin/csadm /usr/local/bin/csadm
+```
+
+You need to adapt the IP address to the Utimaco netHSM:
+
+```
+vi /etc/cs_pkcs11_R2.cfg
+```
+
+Update the file with:
+```
+[Global]
+KeepAlive = true
+ConnectionTimeout = 600000
+AppTimeout = 172800
+
+[Cryptoserver]
+Device = 3001@192.168.2.32
+```
+
+The complete Content looks like:
+
+```
+[Global]
+# Path to the logfile (name of logfile is attached by the API)
+# For unix:
+#Logpath = /tmp
+# For windows:
+#Logpath = c:/tmp
+
+# Loglevel (0 = NONE; 1 = ERROR; 2 = WARNING; 3 = INFO; 4 = TRACE)
+Logging = 0
+# Maximum size of the logfile in bytes (file is rotated with a backupfile if full)
+Logsize = 10mb
+
+# If true, PKCS1 is forced as default padding mechanism for RSA key creation
+# PSS padding mechanism is the alternative, if false or unset
+# Only evaluated, if not explicitly set during key pair generation
+#DefaultPadMechPKCS1 = true
+
+# If true, CKA_EXTRACTABLE is set automatically during RSA key creation
+# as long as PKCS1 padding is part of CKA_ALLOWED_MECHANISMS
+#MakeRsaPKCS1KeysExportable = true
+
+# Created/Generated keys are stored in an external or internal database
+KeysExternal = false
+
+# Path to the external keystore
+# If KeyStore is defined the external keystore will be created and used at the defined location
+# For unix:
+#KeyStore = /tmp/P11.pks
+# For windows:
+#KeyStore = C:/tmp/P11.pks 
+
+# If true, every session establishs its own connection
+SlotMultiSession = true
+
+# Maximum number of slots that can be used
+SlotCount = 10
+
+# If true, leading zeroes of decryption operations will be kept
+KeepLeadZeros = false
+
+# Configures load balancing mode ( == 0 ) or failover mode ( > 0 )
+FallbackInterval = 0
+
+# Prevents expiring session after inactivity of 15 minutes
+KeepAlive = true
+
+# Timeout of the open connection command in ms
+ConnectionTimeout = 600000
+
+# Timeout of command execution in ms
+CommandTimeout = 60000
+
+# Application Timeout
+AppTimeout = 172800
+
+# List of official PKCS#11 mechanisms which should be customized
+#CustomMechanisms = { CKM_AES_CBC CKM_AES_ECB }
+
+#[CryptoServer]
+# Device specifier (here: CryptoServer is internal PCI device)
+# For unix:
+#Device = /dev/cs2
+# For windows:
+#Device = PCI:0  
+
+[CryptoServer]
+# Device specifier (here: CryptoServer is CSLAN with IP address 192.168.0.1) 
+Device = 3001@192.168.2.32
+
+#[CryptoServer]
+# Device specifier (here: CryptoServer is logical failover device of CSLANs with IP address 192.168.0.2 and IP address 192.168.0.3) 
+#Device = { 192.168.0.2 192.168.0.3 }
+
+#[Slot]
+# Slotsection for slot with number 0
+#SlotNumber = 0
+```
+
+
+```
+chmod -R -x-w+r /etc/cs_pkcs11_R2.cfg
+```
+
+Ubuntu Module Signing key
+-------------------------
+/root/module-signing/MOK.priv
+3jbc4
+
+Virtualbox Secure boot password
+-------------------------------
+NTS3jbc4
+
+Windows User
+------------
+user e-mail: ntsca@cardplus.se
+password: NTS-3jbc4
+PIN: 38104
+
+
+Configure EJBCA for Utimaco PKCS11
+----------------------------------
+
+###Using the keytool
+```
+keytool -genkey -keyalg RSA -keysize 512 -keystore NONE -storetype PKCS11 -storepass 123456 -providerclass sun.security.pkcs11.SunPKCS11 -providerarg /etc/java-8-openjdk/security/utimaco-slot1.cfg -alias empty -dname "CN=empty"
+keytool -delete -keystore NONE -storetype PKCS11 -storepass 123456 -providerclass sun.security.pkcs11.SunPKCS11 -providerarg /etc/java-8-openjdk/security/utimaco-slot1.cfg -alias empty
+keytool -delete -keystore NONE -storetype PKCS11 -storepass 123456 -providerclass sun.security.pkcs11.SunPKCS11 -providerarg /etc/java-8-openjdk/security/utimaco-slot1.cfg -alias test
+keytool -delete -keystore NONE -storetype PKCS11 -storepass 123456 -providerclass sun.security.pkcs11.SunPKCS11 -providerarg /etc/java-8-openjdk/security/utimaco-slot1.cfg -alias default
+keytool -delete -keystore NONE -storetype PKCS11 -storepass 123456 -providerclass sun.security.pkcs11.SunPKCS11 -providerarg /etc/java-8-openjdk/security/utimaco-slot1.cfg -alias signing
+
+
+```
+
+A script will configure the whole EJBCA from scratch with support for Utimaco HSM.
+
+
+
+
